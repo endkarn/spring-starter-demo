@@ -16,8 +16,8 @@ public class DomainController {
     public DomainDto firstDomainApi(){
         DomainDto domainDto = new DomainDto();
         domainDto.setId(58011212139L);
-        domainDto.setFirstname("Mr.Patcharapruck");
-        domainDto.setLastname("Sukjindastane");
+        domainDto.setFirstname("Naphat");
+        domainDto.setLastname("Boonchom");
         return domainDto;
     }
 }
