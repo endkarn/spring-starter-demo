@@ -15,11 +15,10 @@ public class DomainController {
     @GetMapping("/hello")
     public DomainDto firstDomainApi(){
         DomainDto domainDto = new DomainDto();
-        domainDto.setId(00123l);
+        domainDto.setId(58011212139L);
         domainDto.setFirstname("Naphat");
         domainDto.setLastname("Boonchomnam");
         domainDto.setMajor("CS");
         return domainDto;
     }
 }
-
