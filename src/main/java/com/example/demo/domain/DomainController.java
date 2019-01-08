@@ -17,7 +17,8 @@ public class DomainController {
         DomainDto domainDto = new DomainDto();
         domainDto.setId(00123l);
         domainDto.setFirstname("Naphat");
-        domainDto.setLastname("Boonchom");
+        domainDto.setLastname("Boonchomnam");
+        domainDto.setMajor("CS");
         return domainDto;
     }
 }
