@@ -1,4 +1,4 @@
-package com.example.demo.domaindto;
+package com.example.demo.domain;
 
 public class DomainDto {
     private Long id;

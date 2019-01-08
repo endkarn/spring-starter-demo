@@ -1,4 +1,4 @@
-package com.example.demo.domaindto;
+package com.example.demo.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.example.demo.domaindto;
+package com.example.demo.domain;
 
 import org.springframework.stereotype.Service;
 
