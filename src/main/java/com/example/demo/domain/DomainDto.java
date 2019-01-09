@@ -5,6 +5,7 @@ public class DomainDto {
     private String firstname;
     private String lastname;
     private String major;
+    private String address;
 
     public Long getId() {
         return id;
@@ -33,5 +34,13 @@ public class DomainDto {
     public String getMajor(){return major;}
 
     public void setMajor(String major){this.major = major;}
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
 
