@@ -1,39 +1,40 @@
 package com.example.demo.domain;
 
 public class DomainDto {
-    private Long id;
-    private String firstname;
-    private String lastname;
-    private String major;
+    private String Name;
+    private Long Id;
+    private Double weight;
+    private Double height;
     private String address;
+    private Double sum;
+    private String result;
+
+    public String getName() {return Name; }
+    public void setName(String name) { Name = name; }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        Id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public Double getWeight() {
+        return weight;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
-    public String getLastname() {
-        return lastname;
+    public Double getHeight() {
+        return height;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setHeight(Double height) {
+        this.height = height;
     }
-
-    public String getMajor(){return major;}
-
-    public void setMajor(String major){this.major = major;}
 
     public String getAddress() {
         return address;
@@ -42,5 +43,28 @@ public class DomainDto {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public Double getSum() {
+        return sum;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Double BMI(){
+        sum = weight / Math.pow((height*0.01),2);
+        return sum;
+
+    }
+
 }
 
