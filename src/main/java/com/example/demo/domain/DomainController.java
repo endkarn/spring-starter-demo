@@ -27,8 +27,7 @@ public class DomainController {
         domainDto.setHeight(165.0);
         domainDto.setWeight(60.2);
         bmi = domainDto.BMI();
-
-        System.out.println(bmi);
+        System.out.println("BMI = "+bmi);
 
         if (bmi<=18.5){
           domainDto.setResult("You thin");
