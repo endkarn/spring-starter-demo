@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
         userDtoList.add(new UserDto(0L,"firstname","lastname"));
         userDtoList.add(new UserDto(1L,"กานวัด","คนดี"));
         userDtoList.add(new UserDto(2L,"น้องน้ำ","บ้านไกล"));
-        userDtoList.add(new UserDto(3L,"ฟลุ้ค","สารคาม"));
+        userDtoList.add(new UserDto(3L,"ฟลุ้ค","ไม่บอก"));
     }
 
     public UserDto getUserDto(Long id){
