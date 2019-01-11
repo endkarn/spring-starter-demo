@@ -8,3 +8,16 @@ _**8-1-2019**_
 * * https://blog.nextzy.me/มาเรียนรู้-git-แบบง่ายๆกันเถอะ-427398e62f82
 * * https://devahoy.com/posts/introduction-to-git-and-github/
 
+_**xx-1-2019**_
+
+* JBDC Connetion Database Service
+* * 
+* * 
+* * 
+
+
+* Junit Unit Test
+* * 
+* * 
+* * 
+
