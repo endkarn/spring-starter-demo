@@ -8,17 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+                sh 'mvn clean package'
             }
         }
         stage('Build image') {
@@ -37,11 +27,6 @@ pipeline {
                         dockerImage.push()
                     }
                 }
-            }
-        }
-        stage('Deployment') {
-            steps {
-                sh 'kubectl apply -f deployment.yml';
             }
         }
     }
