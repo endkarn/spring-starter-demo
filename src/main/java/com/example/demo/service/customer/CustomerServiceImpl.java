@@ -71,6 +71,7 @@ public class CustomerServiceImpl extends ConnectionService implements CustomerSe
         try {
             conn = openConnection(conn);
             CustomerDto customerDto = new ObjectMapper().convertValue(erpRequest.getBody() , CustomerDto.class);
+
             insertedId = customerRepository.insertCustomer(conn,customerDto);
             if(insertedId > 0){
                 conn.commit();
