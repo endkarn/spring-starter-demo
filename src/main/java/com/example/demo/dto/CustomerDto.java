@@ -1,8 +1,8 @@
-package com.example.demo.takecaredemo;
+package com.example.demo.dto;
 
 import java.util.List;
 
-public class DemoCustomerDto extends ErpBaseDto{
+public class CustomerDto extends ErpBaseDto{
 
     private Long id;
     private String customerCode;

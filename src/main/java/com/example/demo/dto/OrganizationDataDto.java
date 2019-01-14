@@ -1,4 +1,4 @@
-package com.example.demo.takecaredemo;
+package com.example.demo.dto;
 
 public class OrganizationDataDto extends ErpBaseDto {
     private Long id;

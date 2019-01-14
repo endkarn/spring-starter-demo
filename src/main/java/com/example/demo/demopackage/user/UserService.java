@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.example.demo.demopackage.user;
 
 import com.example.demo.dto.UserDto;
 

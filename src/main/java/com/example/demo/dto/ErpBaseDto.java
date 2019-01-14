@@ -1,4 +1,4 @@
-package com.example.demo.takecaredemo;
+package com.example.demo.dto;
 
 
 import java.sql.Timestamp;
@@ -30,20 +30,20 @@ public class ErpBaseDto {
 		this.recorder = recorder;
 	}
 
-	public UserDto getEditor() {
-		return editor;
-	}
-
-	public void setEditor(UserDto editor) {
-		this.editor = editor;
-	}
-
 	public Timestamp getCreateDate() {
 		return createDate;
 	}
 
 	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
+	}
+
+	public UserDto getEditor() {
+		return editor;
+	}
+
+	public void setEditor(UserDto editor) {
+		this.editor = editor;
 	}
 
 	public Timestamp getLastUpdate() {
@@ -54,19 +54,19 @@ public class ErpBaseDto {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Boolean isDeleted() {
-		return isDeleted;
-	}
-
-	public void setDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	public Boolean isActive() {
+	public Boolean getActive() {
 		return isActive;
 	}
 
-	public void setActive(Boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(Boolean active) {
+		isActive = active;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
 	}
 }

@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.demopackage.domain;
 
 public class DomainDto {
     private String Name;
