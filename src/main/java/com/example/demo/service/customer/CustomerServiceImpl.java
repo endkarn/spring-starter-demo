@@ -52,7 +52,7 @@ public class CustomerServiceImpl extends ConnectionService implements CustomerSe
                 erpResponse.setMessage(ApplicationConstant.SUCCESS);
                 erpResponse.setObject(customerDtoList);
             }else {
-                erpResponse.setMessage(ApplicationConstant.FAIL);
+                erpResponse.setMessage("No data!");
             }
 
         }catch (Exception e){
