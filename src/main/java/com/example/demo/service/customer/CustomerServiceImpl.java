@@ -98,6 +98,7 @@ public class CustomerServiceImpl extends ConnectionService implements CustomerSe
             CustomerDto customerDto = new ObjectMapper().convertValue(erpRequest.getBody() , CustomerDto.class);
             checked = customerRepository.updateCustomer(conn,customerDto);
             if(checked){
+                conn.commit();
                 erpResponse.setMessage(ApplicationConstant.SUCCESS);
             }else {
                 erpResponse.setMessage(ApplicationConstant.FAIL);
