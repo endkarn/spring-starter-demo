@@ -12,4 +12,6 @@ public interface CustomerRepository {
     List<CustomerDto> searchCustomer(Connection conn, Object criteria) throws SQLException;
 
     Long insertCustomer(Connection conn, CustomerDto customerDto);
+
+    boolean updateCustomer(Connection conn,CustomerDto customerDto) throws SQLException;
 }

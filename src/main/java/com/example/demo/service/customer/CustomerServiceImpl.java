@@ -87,4 +87,26 @@ public class CustomerServiceImpl extends ConnectionService implements CustomerSe
         }
         return erpResponse;
     }
+
+    @Override
+    public ErpResponse updateCustomer(ErpRequest erpRequest) throws Exception {
+        ErpResponse erpResponse = new ErpResponse();
+        Connection conn = null;
+        boolean checked;
+        try {
+            conn = openConnection(conn);
+            CustomerDto customerDto = new ObjectMapper().convertValue(erpRequest.getBody() , CustomerDto.class);
+            checked = customerRepository.updateCustomer(conn,customerDto);
+            if(checked){
+                erpResponse.setMessage(ApplicationConstant.SUCCESS);
+            }else {
+                erpResponse.setMessage(ApplicationConstant.FAIL);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(conn);
+        }
+        return erpResponse;
+    }
 }

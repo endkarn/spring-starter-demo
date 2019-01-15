@@ -9,4 +9,6 @@ public interface CustomerService {
     ErpResponse searchCustomer(ErpRequest erpRequest) throws Exception;
 
     ErpResponse insertCustomer(ErpRequest erpRequest) throws Exception;
+
+    ErpResponse updateCustomer(ErpRequest erpRequest) throws Exception;
 }

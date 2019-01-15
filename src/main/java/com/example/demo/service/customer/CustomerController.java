@@ -48,4 +48,16 @@ public class CustomerController {
 
         return erpResponse;
     }
+
+    @PutMapping("/update")
+    public ErpResponse updateCustomer(@RequestBody ErpRequest erpRequest){
+        ErpResponse erpResponse = new ErpResponse();
+        try {
+            erpResponse = customerService.updateCustomer(erpRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return erpResponse;
+    }
 }
