@@ -127,6 +127,60 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         return insertID;
     }
 
+    @Override
+    public boolean updateCustomer(Connection conn, CustomerDto customerDto) throws SQLException {
+
+        boolean addResult = false;
+        CustomerDto customerDto1 = customerDto;
+        StringBuilder sql = new StringBuilder();
+        sql.append("UPDATE tb_customer SET customer_code = ?,");
+        sql.append("firstname = ?,");
+        sql.append("lastname = ?,");
+        sql.append("nickname = ?,");
+        sql.append("gender = ?,");
+        sql.append("mobile = ?,");
+        sql.append("email = ?,");
+        sql.append("organization_id = ?,");
+
+        sql.append("recorder_id = ?,");
+        sql.append("editor_id = ? ");
+        sql.append("WHERE id = ? ");
+
+        System.out.println(customerDto1.getId());
+        System.out.println(customerDto1.getFirstname());
+        System.out.println(customerDto1.getLastname());
+        System.out.println(customerDto1.getNickname());
+        System.out.println(customerDto1.getEmail());
+
+        String sqlt = "UPDATE tb_customer SET customer_code = ?,firstname = ?,lastname = ?,nickname = ?,gender = ?," +
+                "mobile = ?,email = ?,organization_id = ?,recorder_id = ?,editor_id = ? WHERE id = ? ";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(sqlt);
+
+        int index = 1;
+
+        preparedStatement.setString(index++, customerDto1.getCustomerCode());
+        preparedStatement.setString(index++, customerDto1.getFirstname());
+        preparedStatement.setString(index++, customerDto1.getLastname());
+        preparedStatement.setString(index++, customerDto1.getNickname());
+        preparedStatement.setString(index++, customerDto1.getGender());
+        preparedStatement.setString(index++, customerDto1.getMobile());
+        preparedStatement.setString(index++, customerDto1.getEmail());
+        preparedStatement.setLong(index++, customerDto1.getOrganization() != null ? customerDto1.getOrganization().getId() : Types.NULL);
+
+        preparedStatement.setLong(index++, ApplicationConstant.PERSON_ID);
+        preparedStatement.setLong(index++, ApplicationConstant.PERSON_ID);
+        preparedStatement.setLong(index++, customerDto1.getId());
+
+
+        if (preparedStatement.executeUpdate() == 1){
+            addResult = true;
+        }
+
+        preparedStatement.close();
+        return addResult;
+    }
+
     private CustomerDto populateToDto(ResultSet rs) throws SQLException {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setId(rs.getLong("id"));
