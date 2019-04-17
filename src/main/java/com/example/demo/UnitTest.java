@@ -6,11 +6,16 @@ import com.example.demo.dto.Instance;
 import io.jsondb.JsonDBTemplate;
 import org.junit.jupiter.api.Test;
 
+import javax.validation.constraints.NotNull;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -112,6 +117,87 @@ public class UnitTest {
         String filename = "somethings.png";
         String subString = filename.substring(filename.lastIndexOf(".")+1);
     }
+
+    @Test
+    public void testDifOfLocalDateFormat(){
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.BASIC_ISO_DATE));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+    }
+
+    @Test
+    public void testForEachBreakIf(){
+        for(int i = 0 ; i < 10 ; i++){
+            System.out.println("index counter = "+i);
+            if(i==5){
+                System.out.println("check 5");
+                break;
+            }if(i==7){
+                System.out.println("check 7");
+                break;
+            }
+        }
+    }
+
+    @Test
+    void testAnnotation(){
+        System.out.println(concatString("mytext",null));
+    }
+
+    @Test
+    void testContainFalseCase() throws Exception{
+        List<Boolean> booleanList = new ArrayList<>();
+        booleanList.add(true);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        for(int i = 0 ; i < booleanList.size() ; i++){
+            System.out.println(booleanList.get(i));
+            if (!booleanList.get(i)) {
+                throw new Exception("false");
+            }
+        }
+    }
+
+    private String concatString(String s1 ,@NotNull String s2){
+        return s1 + s2;
+    }
+
+    @Test
+    void integerCanBeNegative(){
+        int a = -5;
+        int b = 10;
+        int c = a+b;
+        System.out.println(c);
+    }
+
+    @Test
+    void replaceStringTest(){
+        String baseText = "Hello world my name is karnawat";
+        String replacedText = baseText.replace("karnawat","endkarn");
+        System.out.println(baseText);
+        System.out.println(replacedText);
+    }
+
+    @Test
+    void replacementInHashmap(){
+        String baseText = "hello %T01 , my name is %T02";
+
+        HashMap<String,String> textMappingSet = new HashMap<>();
+        textMappingSet.put("%T01","world");
+        textMappingSet.put("%T02","karnawat");
+
+        System.out.println(baseText);
+        for(HashMap.Entry<String,String> textMapping : textMappingSet.entrySet()){
+            baseText = baseText.replace(textMapping.getKey(),textMapping.getValue());
+            System.out.println(baseText);
+        }
+    }
+
 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @SpringBootApplication
@@ -16,9 +17,9 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 1000) //1000ms = 1s
 	private void scheduleSqlDump() {
-		System.out.println("check point");
+		System.out.println("check point "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 	}
 }
 
