@@ -1,59 +1,29 @@
 package com.example.demo;
 
 import com.example.demo.common.ApplicationConstant;
-import com.example.demo.dto.CustomerDto;
-import com.example.demo.dto.Instance;
-import io.jsondb.JsonDBTemplate;
+import com.example.demo.dto.ContactModel;
+import com.example.demo.dto.KeyMapModel;
+import com.example.demo.dto.UserModel;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
+import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.constraints.NotNull;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 public class UnitTest {
-
-    String dbFileLocation = System.getProperty("user.dir");
-    String baseScanPackage = "com.example.demo";
-    JsonDBTemplate jsonDBTemplate = new JsonDBTemplate(dbFileLocation, baseScanPackage);
-
-    @Test
-    void firstTest() {
-        jsonDBTemplate.createCollection(Instance.class);
-
-    }
-
-    @Test
-    void insertTest() {
-        Instance instance = new Instance();
-//        instance.setId("11");
-        instance.setHostname("karnawat");
-        jsonDBTemplate.insert(instance);
-    }
-
-    @Test
-    void findTest() {
-        Instance instance = jsonDBTemplate.findById("11", Instance.class);
-    }
-
-    @Test
-    void findByName() {
-        String jxQuery = String.format("/.[hostname='%s']", "karnawat");
-        List<Instance> instance = jsonDBTemplate.find(jxQuery, Instance.class);
-    }
-
-    @Test
-    void removeById() {
-//        jsonDBTemplate.
-    }
 
     @Test
     void testStringFormat() throws Exception {
@@ -198,6 +168,51 @@ public class UnitTest {
         }
     }
 
+    @Test
+    void replacementInKeyMapClass(){
+        String baseText = "hello ${T01} , my name is ${T02}";
+
+        List<KeyMapModel> keyMapModels = new ArrayList<>();
+        keyMapModels.add(new KeyMapModel("${T01}","world"));
+        keyMapModels.add(new KeyMapModel("${T02}","karnawat"));
+
+        System.out.println(baseText);
+        for(KeyMapModel textMapping : keyMapModels){
+            baseText = baseText.replace(textMapping.getKey(),textMapping.getMap());
+            System.out.println(baseText);
+        }
+    }
+
+    @Test
+    void checkPlusByNegativeDate(){
+        Timestamp appointDate = Timestamp.valueOf(LocalDateTime.now());
+        int sentDayOff = -2;
+        LocalDateTime dayed = appointDate.toLocalDateTime().plusDays(sentDayOff);
+        System.out.println(appointDate);
+        System.out.println(dayed.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    }
+
+    @Test
+    void reflextionTest() throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException, JsonProcessingException, ClassNotFoundException {
+        UserModel userModel = new UserModel("karnawat","wongudom",new ContactModel("0876541091","endkarn0@gmail.com"));
+        Map<String, Object> mappedObject = new ObjectMapper().convertValue(userModel, Map.class);
+
+        Object output = JsonPath.read(mappedObject, "$.contact.email");
+
+        System.out.println(output);
+
+
+//        Class thisClass = Class.forName("UserModel");
+
+    }
+
+    @Test
+    void testDateInThai(){
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        SimpleDateFormat simpleDateFormatTH = new SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th","TH"));
+        String dateTimeText = simpleDateFormatTH.format(timestamp);
+        System.out.println(dateTimeText);
+    }
 
 
 }
